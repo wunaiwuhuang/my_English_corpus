@@ -1,131 +1,81 @@
-# English Dictionary Warehouse 📚
+# English Dictionary Warehouse
 
-一个功能完整的英语词典管理系统，用于构建个人英语语料库。使用Streamlit + SQLite构建，界面简洁，操作便捷。
+A comprehensive English dictionary management system for building personal vocabulary corpus. Built with Streamlit and SQLite, featuring a clean interface and intuitive operations.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Python](https://img.shields.io/badge/python-3.8+-green)
-![License](https://img.shields.io/badge/license-MIT-orange)
+Version: 1.0.0  
+Python: 3.8+  
+License: MIT
 
-## ✨ 功能特性
+## Features
 
-### 📚 核心功能
-- **Lemma管理**: 添加、编辑、删除单词词条，支持多词性和多义项
-- **Example管理**: 添加例句并智能关联到单词
-- **Relation管理**: 建立单词之间的语义关系网络
-- **智能检索**: 按字母、topic、关键词快速搜索
+### Core Functions
+- Lemma Management: Add, edit, and delete word entries with support for multiple parts of speech and definitions
+- Example Management: Add example sentences with intelligent lemma association
+- Relation Management: Build semantic relationship networks between words
+- Smart Search: Quick search by alphabet, topic, or keywords
 
-### 🎯 特色功能
-- ✅ 自动lemma格式化（空格转下划线，统一小写）
-- ✅ Example与Lemma智能关联（自动验证，灰色显示未找到的lemma）
-- ✅ 新增lemma时自动刷新所有example的有效性
-- ✅ Relation严格验证lemma存在性（避免脏数据）
-- ✅ 关系网络可视化（支持多层深度探索）
-- ✅ 超紧凑列表显示（一行展示，按需展开）
-- ✅ 内联编辑所有字段（包括POS/Meanings）
-- ✅ 自定义CSS样式（可调整行高、间距）
+### Advanced Features
+- Automatic lemma formatting (spaces to underscores, lowercase conversion)
+- Intelligent example-lemma association (automatic validation, grayed display for non-existent lemmas)
+- Auto-refresh example validity when adding new lemmas
+- Strict lemma existence validation for relations (prevents dirty data)
+- Relationship network visualization (supports multi-depth exploration)
+- Ultra-compact list display (one-line view, expand on demand)
+- Inline editing for all fields (including POS and meanings)
+- Custom CSS styling (adjustable line height and spacing)
 
-## 🚀 快速开始
+## Quick Start
 
-### 环境要求
-- Python 3.8 或更高版本
-- pip 包管理器
+### Requirements
+- Python >= 3.8
+- streamlit >= 1.28.0
 
-### 安装步骤
+### Installation
 
-#### 1. 创建项目目录
+#### 1. Create Environment
 ```bash
-mkdir english_dictionary
-cd english_dictionary
+conda create -n dictionary python=3.8
+conda activate dictionary
 ```
 
-#### 2. 创建所有子目录
+#### 2. Clone Repository
 ```bash
-# Windows
-mkdir database services ui\components utils data
-
-# Mac/Linux
-mkdir -p database services ui/components utils data
+git clone https://github.com/wunaiwuhuang/my_English_corpus
+cd my_English_corpus
 ```
 
-#### 3. 创建所有 `__init__.py` 文件
-```bash
-# Windows
-type nul > database\__init__.py
-type nul > services\__init__.py
-type nul > ui\__init__.py
-type nul > ui\components\__init__.py
-type nul > utils\__init__.py
-
-# Mac/Linux
-touch database/__init__.py
-touch services/__init__.py
-touch ui/__init__.py
-touch ui/components/__init__.py
-touch utils/__init__.py
-```
-
-#### 4. 复制所有代码文件
-将提供的代码依次复制到对应文件中：
-
-**根目录文件：**
-- `config.py`
-- `app.py`
-- `requirements.txt`
-- `README.md`
-- `backup.bat` (Windows) 或 `backup.sh` (Mac/Linux)
-
-**database/ 目录：**
-- `schema.sql`
-- `models.py`
-- `db_manager.py`
-
-**services/ 目录：**
-- `lemma_service.py`
-- `example_service.py`
-- `relation_service.py`
-
-**utils/ 目录：**
-- `validators.py`
-- `helpers.py`
-
-**ui/ 目录：**
-- `browser.py`
-- `add_lemma.py`
-- `add_example.py`
-- `add_relation.py`
-
-#### 5. 安装依赖
+#### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-#### 6. 运行应用
+#### 4. Run Application
 ```bash
 streamlit run app.py
 ```
 
-应用将在浏览器中自动打开，默认地址为 `http://localhost:8501`
+The application will automatically open in your browser at `http://localhost:8501`
 
-## 📖 使用指南
+## User Guide
 
-### 添加Lemma (词条)
-1. 点击侧边栏 **"📝 Add Lemma"**
-2. 填写基础信息：
-   - **Lemma**: 词条（空格自动转为下划线）
-   - **Pronunciation**: 英式发音（可选）
-   - **Spell Nuance**: 拼写差异（可选，英左美右）
-   - **Collocation**: 搭配（可选）
-   - **Topic**: 主题分类（可选）
-3. 配置词性和意思：
-   - 选择词性（n., v., adj. 等）
-   - 每行输入一个意思
-   - 可添加多个词性
-4. 可选填写：
-   - **Inflection**: 不规则变形（格式：`verb: past, past_participle | noun: plural`）
-   - **Derivation**: 派生词（格式：`word:meaning`，每行一个）
-5. 点击 **"💾 Save"** 保存
+### Adding Lemmas
+1. Click "Add Lemma" in the sidebar
+2. Fill in basic information:
+   - Lemma: Word entry (spaces automatically converted to underscores)
+   - Pronunciation: British pronunciation (optional)
+   - Spell Nuance: Spelling differences (optional, British left, American right)
+   - Collocation: Word combinations (optional)
+   - Topic: Category classification (optional)
+3. Configure parts of speech and meanings:
+   - Select part of speech (n., v., adj., etc.)
+   - Enter one meaning per line
+   - Can add multiple parts of speech
+4. Optional fields:
+   - Inflection: Irregular forms (format: `verb: past, past_participle | noun: plural`)
+   - Derivation: Derived words (format: `word:meaning`, one per line)
+5. Click "Save" to save
 
-**示例：**
+Example:
 ```
 Lemma: break down
 Pronunciation: breɪk daʊn
@@ -141,36 +91,36 @@ Inflection: verb: broke down, broken down
 Derivation: breakdown: noun form
 ```
 
-### 添加Example (例句)
-1. 点击侧边栏 **"📖 Add Example"**
-2. 输入例句内容
-3. 输入关联的lemmas（逗号分隔）
-4. 系统自动验证：
-   - ✅ **绿色**：lemma存在
-   - ⚠️ **灰色**：lemma不存在（稍后添加lemma后会自动关联）
-5. 点击 **"💾 Save"** 保存
+### Adding Examples
+1. Click "Add Example" in the sidebar
+2. Enter example sentence
+3. Enter associated lemmas (comma-separated)
+4. System automatically validates:
+   - Green: lemma exists
+   - Gray: lemma does not exist (will auto-link when lemma is added later)
+5. Click "Save" to save
 
-**示例：**
+Example:
 ```
 Example: My car broke down on the highway yesterday.
 Lemmas: break_down, car, highway
 ```
 
-### 添加Relation (关系)
-1. 点击侧边栏 **"🔗 Add Relation"**
-2. 输入第一个词条：
-   - Lemma 1: 词条名（必须已存在）
-   - Specific Word 1: 特定用法（单个词）
-3. 输入第二个词条：
-   - Lemma 2: 词条名（必须已存在）
-   - Specific Word 2: 特定用法（单个词）
-4. 选择关系类型：
-   - **Interchangeable**: 可互换
-   - **Contextual Synonym**: 语境同义词
-5. 添加备注说明（可选）
-6. 点击 **"💾 Save"** 保存
+### Adding Relations
+1. Click "Add Relation" in the sidebar
+2. Enter first word:
+   - Lemma 1: Word entry (must exist)
+   - Specific Word 1: Specific usage (single word)
+3. Enter second word:
+   - Lemma 2: Word entry (must exist)
+   - Specific Word 2: Specific usage (single word)
+4. Select relationship type:
+   - Interchangeable: Interchangeable
+   - Contextual Synonym: Contextual synonym
+5. Add notes (optional)
+6. Click "Save" to save
 
-**示例：**
+Example:
 ```
 Lemma 1: provide        Specific Word 1: provide
 Lemma 2: postulate      Specific Word 2: postulate
@@ -178,96 +128,96 @@ Type: contextual_synonym
 Note: 'provide' in law, 'postulate' in academic
 ```
 
-### 浏览Dictionary (词典)
-1. 点击侧边栏 **"🔍 Browse"**
-2. 使用搜索和过滤：
-   - 🔎 搜索框：输入关键词
-   - 📚 Topic过滤：选择特定主题
-   - 🔤 排序：字母序/最近添加/Topic
-3. 词条操作（一行显示）：
-   - **👁️**: 展开查看详细信息
-   - **✏️**: 编辑词条（所有字段可编辑）
-   - **🗑️**: 删除词条
-   - **🕸️**: 查看关系网络（如有关系）
-4. 展开后可查看：
-   - 完整的词性和意思
-   - Inflection、Derivation、Collocation
-   - 关联的Examples
-   - 相关的Relations
+### Browsing Dictionary
+1. Click "Browse" in the sidebar
+2. Use search and filters:
+   - Search box: Enter keywords
+   - Topic filter: Select specific topics
+   - Sort by: Alphabetical / Recently added / Topic
+3. Entry operations (one-line display):
+   - View: Expand to see details
+   - Edit: Edit entry (all fields editable)
+   - Delete: Delete entry
+   - Network: View relationship network (if relations exist)
+4. When expanded, view:
+   - Complete parts of speech and meanings
+   - Inflection, derivation, collocation
+   - Associated examples
+   - Related relations
 
-## 🗄️ 数据库结构
+## Database Structure
 
-### lemmas表（词条）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | TEXT | UUID主键 |
-| lemma | TEXT | 唯一词条（空格转下划线） |
-| pronunciation_british | TEXT | 英式发音 |
-| spell_nuance | TEXT | 拼写差异 |
-| pos_meaning | TEXT | JSON格式的词性和意思 |
-| inflection | TEXT | JSON格式的变形 |
-| derivation | TEXT | JSON格式的派生词 |
-| collocation | TEXT | 搭配 |
-| topic | TEXT | 主题分类 |
-| created_at | TIMESTAMP | 创建时间 |
-| updated_at | TIMESTAMP | 更新时间 |
+### lemmas Table
+| Field | Type | Description |
+|-------|------|-------------|
+| id | TEXT | UUID primary key |
+| lemma | TEXT | Unique word entry (spaces to underscores) |
+| pronunciation_british | TEXT | British pronunciation |
+| spell_nuance | TEXT | Spelling differences |
+| pos_meaning | TEXT | JSON format for POS and meanings |
+| inflection | TEXT | JSON format for inflections |
+| derivation | TEXT | JSON format for derivations |
+| collocation | TEXT | Word combinations |
+| topic | TEXT | Topic classification |
+| created_at | TIMESTAMP | Creation time |
+| updated_at | TIMESTAMP | Update time |
 
-### examples表（例句）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | TEXT | UUID主键 |
-| example | TEXT | 例句内容 |
-| created_at | TIMESTAMP | 创建时间 |
+### examples Table
+| Field | Type | Description |
+|-------|------|-------------|
+| id | TEXT | UUID primary key |
+| example | TEXT | Example sentence |
+| created_at | TIMESTAMP | Creation time |
 
-### example_lemma_links表（例句-词条关联）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| example_id | TEXT | 例句ID（外键） |
-| lemma | TEXT | 词条（外键） |
-| is_valid | INTEGER | 是否有效（1=存在，0=不存在） |
+### example_lemma_links Table
+| Field | Type | Description |
+|-------|------|-------------|
+| example_id | TEXT | Example ID (foreign key) |
+| lemma | TEXT | Lemma (foreign key) |
+| is_valid | INTEGER | Validity (1=exists, 0=does not exist) |
 
-### relations表（词条关系）
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | INTEGER | 自增主键 |
-| lemma1 | TEXT | 第一个词条（外键） |
-| specific_word1 | TEXT | 第一个特定词 |
-| lemma2 | TEXT | 第二个词条（外键） |
-| specific_word2 | TEXT | 第二个特定词 |
-| relation_type | TEXT | 关系类型 |
-| note | TEXT | 备注 |
-| created_at | TIMESTAMP | 创建时间 |
+### relations Table
+| Field | Type | Description |
+|-------|------|-------------|
+| id | INTEGER | Auto-increment primary key |
+| lemma1 | TEXT | First lemma (foreign key) |
+| specific_word1 | TEXT | First specific word |
+| lemma2 | TEXT | Second lemma (foreign key) |
+| specific_word2 | TEXT | Second specific word |
+| relation_type | TEXT | Relationship type |
+| note | TEXT | Notes |
+| created_at | TIMESTAMP | Creation time |
 
-## 💾 数据备份
+## Data Backup
 
-### 自动备份脚本
+### Automated Backup Scripts
 
-**Windows用户：**
+Windows users:
 ```bash
-# 双击运行
+# Double-click to run
 backup.bat
 
-# 或命令行运行
+# Or run from command line
 .\backup.bat
 ```
 
-**Mac/Linux用户：**
+Mac/Linux users:
 ```bash
-# 添加执行权限（首次）
+# Add execution permission (first time only)
 chmod +x backup.sh
 
-# 运行备份
+# Run backup
 ./backup.sh
 ```
 
-备份文件将保存在 `backups/` 目录，命名格式：
+Backup files will be saved in the `backups/` directory with naming format:
 ```
 dictionary_backup_20241124_153020.db
 ```
 
-### 手动备份
+### Manual Backup
 
-**方法1：直接复制文件**
+Method 1: Direct file copy
 ```bash
 # Windows
 copy data\dictionary.db backups\dictionary_backup.db
@@ -276,167 +226,115 @@ copy data\dictionary.db backups\dictionary_backup.db
 cp data/dictionary.db backups/dictionary_backup.db
 ```
 
-**方法2：使用SQLite导出**
+Method 2: SQLite export
 ```bash
 sqlite3 data/dictionary.db .dump > backup.sql
 ```
 
-### 恢复数据
+### Data Recovery
 ```bash
-# 方法1：替换文件
+# Method 1: Replace file
 copy backups\dictionary_backup_20241124.db data\dictionary.db
 
-# 方法2：从SQL导入
+# Method 2: Import from SQL
 sqlite3 data/dictionary.db < backup.sql
 ```
 
-## 🔧 自定义样式
+## Technology Stack
 
-### 调整行高和间距
-在 `ui/browser.py` 的开头可以自定义CSS：
+- Frontend Framework: Streamlit 1.28+
+- Database: SQLite3
+- Backend Language: Python 3.8+
+- Data Format: JSON (flexible field storage)
+- Architecture Pattern: MVC layered architecture
 
-```python
-st.markdown("""
-    <style>
-    /* 调整这些值来改变显示效果 */
-    .element-container {
-        margin-bottom: -10px !important;  /* 元素间距 */
-    }
-    .stButton button {
-        height: 2rem !important;          /* 按钮高度 */
-    }
-    .stMarkdown p {
-        line-height: 1.3 !important;      /* 行高 */
-    }
-    </style>
-""", unsafe_allow_html=True)
-```
-
-### 调整列宽比例
-在 `ui/browser.py` 约85行修改：
-
-```python
-col1, col2 = st.columns([8, 2])  # lemma区:按钮区 = 8:2
-```
-
-## 🛠️ 技术栈
-
-- **前端框架**: Streamlit 1.28+
-- **数据库**: SQLite3
-- **后端语言**: Python 3.8+
-- **数据格式**: JSON (灵活字段存储)
-- **架构模式**: MVC分层架构
-
-## 📁 项目结构
+## Project Structure
 
 ```
 english_dictionary/
-├── app.py                      # 主应用入口（路由）
-├── config.py                   # 全局配置
-├── requirements.txt            # Python依赖
-├── backup.bat / backup.sh      # 备份脚本
-├── README.md                   # 项目文档
+├── app.py                      # Main application entry (routing)
+├── config.py                   # Global configuration
+├── requirements.txt            # Python dependencies
+├── backup.bat / backup.sh      # Backup scripts
+├── README.md                   # Project documentation
 │
-├── database/                   # 数据库层
+├── database/                   # Database layer
 │   ├── __init__.py
-│   ├── schema.sql              # 表结构定义
-│   ├── db_manager.py           # 数据库操作封装
-│   └── models.py               # 数据模型
+│   ├── schema.sql              # Table structure definition
+│   ├── db_manager.py           # Database operation wrapper
+│   └── models.py               # Data models
 │
-├── services/                   # 业务逻辑层
+├── services/                   # Business logic layer
 │   ├── __init__.py
-│   ├── lemma_service.py        # Lemma业务逻辑
-│   ├── example_service.py      # Example业务逻辑
-│   └── relation_service.py     # Relation业务逻辑
+│   ├── lemma_service.py        # Lemma business logic
+│   ├── example_service.py      # Example business logic
+│   └── relation_service.py     # Relation business logic
 │
-├── ui/                         # 用户界面层
+├── ui/                         # User interface layer
 │   ├── __init__.py
-│   ├── browser.py              # 浏览器界面
-│   ├── add_lemma.py            # 添加Lemma界面
-│   ├── add_example.py          # 添加Example界面
-│   ├── add_relation.py         # 添加Relation界面
-│   └── components/             # UI组件
+│   ├── browser.py              # Browser interface
+│   ├── add_lemma.py            # Add Lemma interface
+│   ├── add_example.py          # Add Example interface
+│   ├── add_relation.py         # Add Relation interface
+│   └── components/             # UI components
 │       └── __init__.py
 │
-├── utils/                      # 工具函数
+├── utils/                      # Utility functions
 │   ├── __init__.py
-│   ├── validators.py           # 数据验证
-│   └── helpers.py              # 辅助函数
+│   ├── validators.py           # Data validation
+│   └── helpers.py              # Helper functions
 │
-├── data/                       # 数据目录
-│   └── dictionary.db           # SQLite数据库（自动生成）
+├── data/                       # Data directory
+│   └── dictionary.db           # SQLite database (auto-generated)
 │
-└── backups/                    # 备份目录（自动创建）
-    └── dictionary_backup_*.db  # 备份文件
+└── backups/                    # Backup directory (auto-created)
+    └── dictionary_backup_*.db  # Backup files
 ```
 
-## 🔍 查看数据
+## Viewing Data
 
-### 使用DB Browser (推荐)
-1. 下载 [DB Browser for SQLite](https://sqlitebrowser.org/)
-2. 打开 `data/dictionary.db`
-3. 图形化查看和编辑所有表
+### Using DB Browser (Recommended)
+1. Download [DB Browser for SQLite](https://sqlitebrowser.org/)
+2. Open `data/dictionary.db`
+3. Graphically view and edit all tables
 
-### 使用命令行
+### Using Command Line
 ```bash
 sqlite3 data/dictionary.db
 
-# 查看所有表
+# View all tables
 .tables
 
-# 查看lemmas
+# View lemmas
 SELECT lemma, pronunciation_british, topic FROM lemmas;
 
-# 退出
+# Exit
 .quit
 ```
 
-## 🚧 未来扩展
+## FAQ
 
-- [ ] 交互式关系网络图（NetworkX + Plotly）
-- [ ] 数据导入/导出（JSON、CSV、Excel）
-- [ ] 批量导入单词功能
-- [ ] 学习进度追踪
-- [ ] 生词本功能
-- [ ] Anki卡片导出
-- [ ] 多用户支持
-- [ ] 云端同步
+### Q: How to migrate to another computer?
+A: Simply copy the entire project folder, especially the `data/dictionary.db` file.
 
-## ❓ 常见问题
+### Q: Where is data stored?
+A: All data is stored in a single SQLite file: `data/dictionary.db`.
 
-### Q: 如何迁移到另一台电脑？
-**A:** 只需复制整个项目文件夹，特别是 `data/dictionary.db` 文件。
+### Q: How to clean up old backups?
+A: Manually delete old files in the `backups/` directory. Recommended to keep the most recent 10 backups.
 
-### Q: 数据存储在哪里？
-**A:** 所有数据存储在 `data/dictionary.db` 这一个SQLite文件中。
+### Q: Can I run multiple instances simultaneously?
+A: Not recommended. SQLite does not support high concurrent writes, which may lead to data conflicts.
 
-### Q: 如何清理旧备份？
-**A:** 手动删除 `backups/` 目录中的旧文件，建议保留最近10个备份。
+### Q: How to reset all data?
+A: Delete the `data/dictionary.db` file. Running the application again will automatically create an empty database.
 
-### Q: 可以同时运行多个实例吗？
-**A:** 不建议。SQLite不支持高并发写入，可能导致数据冲突。
+## Contributing
 
-### Q: 如何重置所有数据？
-**A:** 删除 `data/dictionary.db` 文件，重新运行应用会自动创建空数据库。
+Issues and Pull Requests are welcome!
 
-## 📄 许可证
-
-MIT License
-
-Copyright (c) 2024
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
-
-## 🤝 贡献
-
-欢迎提交Issue和Pull Request！
-
-如果这个项目对你有帮助，请给个⭐Star支持一下！
+If this project helps you, please give it a Star for support!
 
 ---
 
-**Built with ❤️ using Streamlit and SQLite**
+Built with Streamlit and SQLite

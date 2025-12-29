@@ -293,6 +293,50 @@ python share_export/export_lemmas.py --db path/to/database.db
 
 Default export directory is `./share_export`. To change the save location, modify the `EXPORT_DIR = "share_export"` entry in `./share_export/export_lemmas.py`.
 
+## Import Functionality
+
+New feature: Integrate multiple dictionary databases from team members into a unified corpus.
+
+### Features
+
+- **Smart lemma integration**: Automatic deduplication, conflict detection with detailed reports
+- **Intelligent example merging**: Same content auto-merged, validity auto-validated
+- **Relation exclusion**: Relations not integrated (to avoid conflicts, manually handle post-integration)
+- **Conflict reporting**: Generate detailed conflict reports for manual review
+- **Backup protection**: Automatic backup of existing data before integration
+
+### Usage
+```bash
+# 1. Place all .db files in share_import/input_db/
+cp dictionary_person1.db share_import/input_db/
+cp dictionary_person2.db share_import/input_db/
+cp dictionary_person3.db share_import/input_db/
+
+# 2. Run integration (Windows)
+cd share_import
+integrate.bat
+
+# Or run directly (cross-platform)
+python integrate_databases.py
+
+# 3. Check results
+# Integrated database: share_import/output_db/integrated.db
+# Conflict report: share_import/output_db/conflict_report_*.txt
+
+# 4. Apply to main database (if satisfied)
+copy share_import\output_db\integrated.db data\dictionary.db
+```
+
+### Integration Rules
+
+| Data Type | Handling                                           |
+| --------- | -------------------------------------------------- |
+| Lemmas    | New entries added, duplicates skipped (keep first) |
+| Examples  | New added, same content merged                     |
+| Relations | **Not integrated** (to avoid conflicts)            |
+
+For detailed instructions, see `share_import/README.md`.
+
 ## Technology Stack
 
 - Frontend Framework: Streamlit 1.28+
@@ -302,7 +346,6 @@ Default export directory is `./share_export`. To change the save location, modif
 - Architecture Pattern: MVC layered architecture
 
 ## Project Structure
-
 ```
 english_dictionary/
 ├── app.py                      # Main application entry (routing)
@@ -341,9 +384,18 @@ english_dictionary/
 │   └── dictionary.db           # SQLite database (auto-generated)
 │
 ├── share_export/               # Export functionality
-│   ├── export_guide.md         # Export readme
+│   ├── export_guide.md         # Export usage guide
 │   ├── export_lemmas.py        # Export script
 │   └── export_lemmas.bat       # Windows batch file
+│
+├── share_import/               # Import/Integration functionality
+│   ├── README.md               # Integration usage guide
+│   ├── integrate_databases.py  # Integration script
+│   ├── integrate.bat           # Windows batch file
+│   ├── input_db/               # Place source .db files here
+│   └── output_db/              # Integration results
+│       ├── integrated.db       # Final integrated database
+│       └── conflict_report_*.txt  # Conflict reports
 │
 └── backups/                    # Backup directory (auto-created)
     └── dictionary_backup_*.db  # Backup files

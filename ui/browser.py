@@ -505,8 +505,3 @@ def render_edit_form(lemma_data):
             if pos_key in st.session_state:
                 del st.session_state[pos_key]
             st.rerun()
-
-
-def show_relation_network(lemma: str, specific_word: str):
-    """显示关系网络图（已废弃，保留兼容性）"""
-    pass
